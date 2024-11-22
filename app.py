@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 
 # Initialize Flask app
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'
+app.secret_key = 'your_secret_key_here'  # Replace with a proper secret key
 
 # Configure Database (using SQLite for simplicity)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chatroom.db'
@@ -117,11 +117,10 @@ def upload_file():
         flash('Invalid file type!')
         return redirect(request.url)
 
+# Create the tables if not already created
 with app.app_context():
     db.create_all()
-    
 
 # Run the Flask app
 if __name__ == "__main__":
-      # Create tables if not already created
     app.run(host='0.0.0.0', port=5000, debug=True)
