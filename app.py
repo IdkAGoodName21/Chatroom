@@ -117,7 +117,11 @@ def upload_file():
         flash('Invalid file type!')
         return redirect(request.url)
 
+with app.app_context():
+    db.create_all()
+    
+
 # Run the Flask app
 if __name__ == "__main__":
-    db.create_all()  # Create tables if not already created
+      # Create tables if not already created
     app.run(host='0.0.0.0', port=5000, debug=True)
